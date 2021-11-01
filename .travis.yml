@@ -1,0 +1,11 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+
+before_install:
+  - docker build -t eddwiin/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true eddwiin/docker-react npm run test
