@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true eddwiin/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: ""  # REGION OF AWS
+  app: "Docker"
+  env: ""
+  bucket_name: ""
+  bucket_path: ""
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY # Travis ci va lire $AWS_ACCESS_KEY qu'on aura défini dans travis-ci.com. Pour des raisons de sécurité on ne va pas définir ici
+  secret_key_access:
+    secure: "$AWS_SECRET_KEY"
